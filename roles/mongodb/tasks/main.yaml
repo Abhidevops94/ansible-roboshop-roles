@@ -1,30 +1,26 @@
-- name: configuring mongodb server
-  become: yes
-  hosts: mongodb
-  tasks:
-  - name: copy mongodb repo #http://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
-    ansible.builtin.copy:
-      src: mongodb.repo
-      dest: /etc/yum.repos.d/mongodb.repo
+- name: copy mongodb repo #http://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
 
-  - name: Install mongodb server #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html
-    ansible.builtin.dnf:
-      name: mongodb-org
-      state: present
+- name: Install mongodb server #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/dnf_module.html
+  ansible.builtin.dnf:
+    name: mongodb-org
+    state: present
 
-  - name: start and enable mongodb #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
-    ansible.builtin.service:
-      name: mongod
-      state: started
-      enabled: yes
+- name: start and enable mongodb #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
+  ansible.builtin.service:
+    name: mongod
+    state: started
+    enabled: yes
 
-  - name: allow remote connection #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
-    ansible.builtin.replace:
-      path: /etc/mongod.conf
-      regexp: '127.0.0.1'
-      replace: '0.0.0.0'
+- name: allow remote connection #https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
 
-  - name: restart mongodb
-    ansible.builtin.service:
-      name: mongod
-      state: restarted
+- name: restart mongodb
+  ansible.builtin.service:
+    name: mongod
+    state: restarted
