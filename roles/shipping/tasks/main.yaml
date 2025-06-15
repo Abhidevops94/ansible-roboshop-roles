@@ -8,7 +8,7 @@
     name: common
     tasks_from: maven
 
-- name: import data #https://docs.ansible.com/ansible/latest/collections/community/mysql/mysql_db_module.html#ansible-collections-community-mysql-mysql-db-module
+- name: import data
   community.mysql.mysql_db:
     name: all
     login_user: "{{ MYSQL_ROOT_USER }}"
@@ -21,7 +21,7 @@
   - /app/db/app-user.sql
   - /app/db/master-data.sql
 
-- name: maven setup
+- name: systemd setup
   include_role:
     name: common
     tasks_from: systemd
