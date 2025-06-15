@@ -1,0 +1,5 @@
+CART_HOST: cart.abhi84s-daws.site
+USER_HOST: cart.abhi84s-daws.site
+RABBITMQ_HOST: cart.abhi84s-daws.site
+RABBITMQ_USER: roboshop
+RABBITMQ_PASSWORD: roboshop123
